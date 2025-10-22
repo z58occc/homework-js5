@@ -309,6 +309,7 @@ $dark:          $gray-900 !default;
 $primary-400:          rgba(0, 128, 126, 1)!default;
 $primary-300:          rgba(100, 195, 191, 1)!default;
 $gray-500:      $gray-500;
+$gray-600:      $gray-600;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -324,6 +325,8 @@ $theme-colors: (
   "primary-400":$primary-400,
   "primary-300":$primary-300,
   "gray-500":   $gray-500,
+  "gray-600":   $gray-600,
+
 ) !default;
 // scss-docs-end theme-colors-map
 

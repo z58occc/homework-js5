@@ -2,12 +2,74 @@ import "./assets/scss/all.scss";
 import "bootstrap/dist/js/bootstrap.min.js";
 const cardList = document.querySelector(".card-list");
 
+const select = document.querySelector(".search-area");
+const dropDown = document.querySelector(".drop-down");
+dropDown.style.display = "none";
+select.addEventListener("click", function (e) {
+  dropDown.style.display = "block";
+});
+
+let value;
+dropDown.addEventListener("click", function (e) {
+  value = e.target.closest(".drop-down-item").getAttribute("value");
+  cardList.innerHTML = "";
+  let newData;
+  if (value !== "all") {
+    newData = data.filter((el) => el.area === value);
+  } else if (value === "all") {
+    newData = data;
+  }
+  for (let i = 0; i < newData.length; i++) {
+    cardList.innerHTML += `<li class="col-4">
+          <div class="card w-100 shadow-sm position-relative" style="width: 18rem;">
+            <div class="bg-primary-300 text-white area-mark position-absolute">
+              ${newData[i].area}
+            </div>
+            <img src="${
+              newData[i].imgUrl
+            }" class="card-img-top" alt="swim-picture">
+            <div class="card-body p-4 position-relative d-flex flex-column justify-content-between">
+              <div class="bg-primary-400 py-1 px-2 position-absolute point-mark text-white">
+                ${newData[i].rate.toFixed(1)}
+              </div>
+              <h5 class="card-title text-primary-400 fs-4 pb-1 border-bottom border-primary-400 border-2 mb-4">${
+                newData[i].name
+              }
+              </h5>
+              <p class="card-text text-secondary pb-4 mb-4">
+                ${newData[i].description}
+              </p>
+              <div class="d-flex justify-content-between">
+                <div class="d-flex align-items-center">
+                  <img class="me-1" src="../assets/images/error-icon.png" alt="error-icon">
+                  <span class="fw-medium text-primary-400">剩下最後 ${
+                    newData[i].group
+                  } 組</span>
+                </div>
+                <div class="d-flex align-items-center ">
+                  <span class=" fw-medium text-primary-400 me-1">TWD</span>
+                  <span class="fw-medium fs-2 text-primary-400">$${newData[
+                    i
+                  ].price.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>`;
+  }
+});
+document.addEventListener("click", function (e) {
+  if (e.target !== select) dropDown.style.display = "none";
+});
+
+let data;
 axios
   .get(
     "https://raw.githubusercontent.com/hexschool/js-training/main/travelApi.json"
   )
   .then(function (res) {
-    const data = res.data.data;
+    data = res.data.data;
+
     for (let i = 0; i < data.length; i++) {
       cardList.innerHTML += `<li class="col-4">
           <div class="card w-100 shadow-sm position-relative" style="width: 18rem;">
