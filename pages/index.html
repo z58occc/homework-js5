@@ -23,7 +23,7 @@
           <h4 class="fw-bold text-primary-400 mb-0">新增旅遊套票</h4>
         </div>
 
-        <form>
+        <form class="ticket-form">
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票名稱</span>
             <input name="name" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
@@ -37,9 +37,17 @@
           </div>
           <div class="d-flex align-items-center mb-3 position-relative">
             <span class="text-primary-400 fw-medium me-4">景點地區</span>
-            <input name="location"
-              class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請選擇景點地區" type="text">
+            <select name="location"
+              class="location-select bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
+              placeholder="請選擇景點地區">
+              <option class="d-none default-value" value="">請選擇景點地區</option>
+            </select>
+            <ul
+              class="location-select-lists position-absolute  list-unstyled border border-gray-600 py-2 z-3 text-gray-600 bg-white ">
+              <li class="location-select-lists-item" value="台北">台北</li>
+              <li class="location-select-lists-item" value="高雄">高雄</li>
+              <li class="location-select-lists-item" value="台中">台中</li>
+            </ul>
             <img class="position-absolute drop-down-icon" src="../assets/images/up-down.png" alt="drop-down-icon">
           </div>
           <div class="d-flex align-items-center mb-3">
@@ -94,6 +102,27 @@
     </div>
   </section>
 
+
+  <script>
+    const locationSelect = document.querySelector(".location-select");
+    const defaultValue = document.querySelector(".default-value");
+    const locationSelectLists = document.querySelector(".location-select-lists");
+    const ticketForm = document.querySelector(".ticket-form");
+    locationSelectLists.style.display = "none"
+    locationSelect.addEventListener("click", function (e) {
+      locationSelectLists.style.display = "block"
+    })
+    locationSelectLists.addEventListener("click", function (e) {
+      const value = e.target.closest(".location-select-lists-item").getAttribute("value");
+      defaultValue.textContent = value;
+      locationSelectLists.style.display = "none"
+    })
+    ticketForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(ticketForm);
+      const data = Object.fromEntries(formData.entries());
+    })
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
   <script type="module" src="../main.js"></script>
 </body>
