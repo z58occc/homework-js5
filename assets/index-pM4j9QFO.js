@@ -19,7 +19,7 @@
                 </p>
                 <div class="d-flex justify-content-between">
                   <div class="d-flex align-items-center">
-                    <img class="me-1" src="/assets/images/error-icon.png" alt="error-icon">
+                    <img class="me-1" src="./assets/images/error-icon.png" alt="error-icon">
                     <span class="fw-medium text-primary-400">剩下最後 ${i[n].group} 組</span>
                   </div>
                   <div class="d-flex align-items-center ">
