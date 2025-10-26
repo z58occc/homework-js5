@@ -49,6 +49,7 @@ dropDown.style.display = "none";
 
 // 渲染
 function renderData(data) {
+  searchNum.textContent = `本次搜尋共 ${data.length} 筆資料`;
   cardList.innerHTML = "";
   for (let i = 0; i < data.length; i++) {
     cardList.innerHTML += `<li class="col-4">
@@ -108,7 +109,6 @@ select.addEventListener("change", function (e) {
   renderData(newData);
   searchNum.textContent = `本次搜尋共 ${newData.length} 筆資料`;
 });
-
 
 dropDown.addEventListener("click", function (e) {
   value = e.target.closest(".drop-down-item").getAttribute("value");
