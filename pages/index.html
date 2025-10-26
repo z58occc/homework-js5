@@ -26,20 +26,20 @@
         <form class="ticket-form">
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票名稱</span>
-            <input name="name" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
+            <input name="name" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 " required
               placeholder="請填寫圖片名稱" type="text">
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">圖片網址</span>
             <input name="imgUrl"
               class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請填寫圖片網址" type="text">
+              placeholder="請填寫圖片網址" type="text" required>
           </div>
           <div class="d-flex align-items-center mb-3 position-relative">
             <span class="text-primary-400 fw-medium me-4">景點地區</span>
             <select name="area"
               class="location-select bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請選擇景點地區">
+              placeholder="請選擇景點地區" required>
               <option class="d-none default-value" value="">請選擇景點地區</option>
             </select>
             <ul
@@ -53,19 +53,19 @@
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票金額</span>
             <input name="price"
-              class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
+              class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 " required
               placeholder="請填寫套票金額" type="number">
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票組數</span>
             <input name="group" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請填寫套票組數" type="number">
+              placeholder="請填寫套票組數" type="number" required>
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票星級</span>
             <input name="rate"
               class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請填寫套票星級" type="text">
+              placeholder="請填寫套票星級" type="number" required>
           </div>
           <div class="d-flex  mb-4">
             <span class="text-primary-400 fw-medium me-4 mt-2">套票描述</span>
@@ -86,7 +86,7 @@
     <div class="container">
       <div class="position-relative d-flex align-items-center mb-4">
         <select class="search-area py-2 ps-12 me-4">
-          <option class="d-none" value="all">地區搜尋</option>
+          <option  class="d-none area" value="all">地區搜尋</option>
         </select>
         <ul class="position-absolute drop-down list-unstyled border border-gray-600 py-2 z-3 text-gray-600 bg-white ">
           <li class="drop-down-item" value="all">全部地區</li>
