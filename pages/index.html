@@ -37,7 +37,7 @@
           </div>
           <div class="d-flex align-items-center mb-3 position-relative">
             <span class="text-primary-400 fw-medium me-4">景點地區</span>
-            <select name="location"
+            <select name="area"
               class="location-select bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
               placeholder="請選擇景點地區">
               <option class="d-none default-value" value="">請選擇景點地區</option>
@@ -54,16 +54,16 @@
             <span class="text-primary-400 fw-medium me-4">套票金額</span>
             <input name="price"
               class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請填寫套票金額" type="text">
+              placeholder="請填寫套票金額" type="number">
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票組數</span>
-            <input name="sets" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請填寫套票組數" type="text">
+            <input name="group" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
+              placeholder="請填寫套票組數" type="number">
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票星級</span>
-            <input name="stars"
+            <input name="rate"
               class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
               placeholder="請填寫套票星級" type="text">
           </div>
@@ -95,34 +95,13 @@
           <li class="drop-down-item" value="台中">台中</li>
         </ul>
         <img class="search-icon position-absolute" src="../assets/images/up-down.png" alt="search-area-icon">
-        <span class="text-gray-500">本次搜尋共 6 筆資料</span>
+        <span class="text-gray-500 search-num">本次搜尋共 6 筆資料</span>
       </div>
-      <ul class="list-unstyled card-list row">
+      <ul class="list-unstyled card-list row gy-4">
       </ul>
     </div>
   </section>
 
-
-  <script>
-    const locationSelect = document.querySelector(".location-select");
-    const defaultValue = document.querySelector(".default-value");
-    const locationSelectLists = document.querySelector(".location-select-lists");
-    const ticketForm = document.querySelector(".ticket-form");
-    locationSelectLists.style.display = "none"
-    locationSelect.addEventListener("click", function (e) {
-      locationSelectLists.style.display = "block"
-    })
-    locationSelectLists.addEventListener("click", function (e) {
-      const value = e.target.closest(".location-select-lists-item").getAttribute("value");
-      defaultValue.textContent = value;
-      locationSelectLists.style.display = "none"
-    })
-    ticketForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const formData = new FormData(ticketForm);
-      const data = Object.fromEntries(formData.entries());
-    })
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
   <script type="module" src="../main.js"></script>
 </body>
