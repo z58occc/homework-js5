@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>index</title>
-  <script type="module" crossorigin src="/homework-js5/assets/index-BTGCmTLq.js"></script>
-  <link rel="stylesheet" crossorigin href="/homework-js5/assets/index--bVw_ty-.css">
+  <script type="module" crossorigin src="/homework-js5/assets/index-BxSH79Ks.js"></script>
+  <link rel="stylesheet" crossorigin href="/homework-js5/assets/index-CynsDlHn.css">
 </head>
 
 <body>
@@ -25,41 +25,49 @@
           <h4 class="fw-bold text-primary-400 mb-0">新增旅遊套票</h4>
         </div>
 
-        <form >
+        <form class="ticket-form">
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票名稱</span>
-            <input name="name" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
+            <input name="name" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 " required
               placeholder="請填寫圖片名稱" type="text">
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">圖片網址</span>
             <input name="imgUrl"
               class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請填寫圖片網址" type="text">
+              placeholder="請填寫圖片網址" type="text" required>
           </div>
           <div class="d-flex align-items-center mb-3 position-relative">
             <span class="text-primary-400 fw-medium me-4">景點地區</span>
-            <input name="location"
-              class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請選擇景點地區" type="text">
+            <select name="area"
+              class="location-select bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
+              placeholder="請選擇景點地區" required>
+              <option class="d-none default-value" value="">請選擇景點地區</option>
+            </select>
+            <ul
+              class="location-select-lists position-absolute  list-unstyled border border-gray-600 py-2 z-3 text-gray-600 bg-white ">
+              <li class="location-select-lists-item" value="台北">台北</li>
+              <li class="location-select-lists-item" value="高雄">高雄</li>
+              <li class="location-select-lists-item" value="台中">台中</li>
+            </ul>
             <img class="position-absolute drop-down-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACVSURBVHgB7ZLRDYJAEETnrgJLsBTpgBbswALUm9iAWoElWIKWQglUAGwgBMIPQ0L4IPuSy81ubnaTywCOsy3kCbxdlliC/JI8AtXPlN0xs/qv2CJk+uGt/tiCg+LSFjA9h+EtpusEZw20FDF97c/zSfcNPmYjK6YonO0Uo9p0pOIUU8SyW9IPD1nXWxveX+A1h+PsiwbCNB9zeM5wywAAAABJRU5ErkJggg==" alt="drop-down-icon">
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票金額</span>
             <input name="price"
-              class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請填寫套票金額" type="text">
+              class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 " required
+              placeholder="請填寫套票金額" type="number">
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票組數</span>
-            <input name="sets" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請填寫套票組數" type="text">
+            <input name="group" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
+              placeholder="請填寫套票組數" type="number" required>
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票星級</span>
-            <input name="stars"
+            <input name="rate"
               class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
-              placeholder="請填寫套票星級" type="text">
+              placeholder="請填寫套票星級" type="number" required>
           </div>
           <div class="d-flex  mb-4">
             <span class="text-primary-400 fw-medium me-4 mt-2">套票描述</span>
@@ -79,46 +87,24 @@
   <section class="py-93 bg-light search">
     <div class="container">
       <div class="position-relative d-flex align-items-center mb-4">
-        <input class="search-area py-2 ps-12 me-4" type="text" placeholder="地區搜尋">
+        <select class="search-area py-2 ps-12 me-4">
+          <option  class="d-none area" value="all">地區搜尋</option>
+        </select>
+        <ul class="position-absolute drop-down list-unstyled border border-gray-600 py-2 z-3 text-gray-600 bg-white ">
+          <li class="drop-down-item" value="all">全部地區</li>
+          <li class="drop-down-item" value="台北">台北</li>
+          <li class="drop-down-item" value="高雄">高雄</li>
+          <li class="drop-down-item" value="台中">台中</li>
+        </ul>
         <img class="search-icon position-absolute" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACVSURBVHgB7ZLRDYJAEETnrgJLsBTpgBbswALUm9iAWoElWIKWQglUAGwgBMIPQ0L4IPuSy81ubnaTywCOsy3kCbxdlliC/JI8AtXPlN0xs/qv2CJk+uGt/tiCg+LSFjA9h+EtpusEZw20FDF97c/zSfcNPmYjK6YonO0Uo9p0pOIUU8SyW9IPD1nXWxveX+A1h+PsiwbCNB9zeM5wywAAAABJRU5ErkJggg==" alt="search-area-icon">
-        <span class="text-gray-500">本次搜尋共 6 筆資料</span>
+        <span class="text-gray-500 search-num">本次搜尋共 6 筆資料</span>
       </div>
-      <ul class="list-unstyled card-list row">
-        <!-- <li class="col-4">
-          <div class=" w-100 shadow-sm position-relative" style="width: 18rem;">
-            <div class="bg-primary-300 text-white area-mark position-absolute">
-              台東
-            </div>
-            <img src="../assets/images/swim.png" class="card-img-top" alt="swim-picture">
-            <div class="card-body p-4 position-relative">
-              <div class="bg-primary-400 py-1 px-2 position-absolute point-mark text-white">
-                8.6
-              </div>
-              <h5 class="card-title text-primary-400 fs-4 pb-1 border-bottom border-primary-400 border-2 mb-4">綠島自由行套裝行程
-              </h5>
-              <p class="card-text text-secondary pb-4 mb-4">
-                嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
-              </p>
-              <div class="d-flex justify-content-between">
-                <div class="d-flex align-items-center">
-                  <img class="me-1" src="../assets/images/error-icon.png" alt="error-icon">
-                  <span class="fw-medium text-primary-400">剩下最後 8 組</span>
-                </div>
-                <div class="d-flex align-items-center">
-                  <span class=" fw-medium text-primary-400 me-1">TWD</span>
-                  <span class="fw-medium fs-2 text-primary-400">$1,280</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li> -->
+      <ul class="list-unstyled card-list row gy-4">
       </ul>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
   </section>
 
-  
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 </body>
 
 </html>
