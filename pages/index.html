@@ -6,6 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>index</title>
+  <!-- Load c3.css -->
+  <link href="../c3-0.7.20/c3.css" rel="stylesheet">
+
+  <!-- Load d3.js and c3.js -->
+  <script src="../c3-0.7.20/docs/js/d3-5.8.2.min.js" charset="utf-8"></script>
+  <script src="../c3-0.7.20/c3.min.js"></script>
 </head>
 
 <body>
@@ -26,8 +32,8 @@
         <form class="ticket-form">
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票名稱</span>
-            <input name="name" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 " required
-              placeholder="請填寫圖片名稱" type="text">
+            <input name="name" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
+              required placeholder="請填寫圖片名稱" type="text">
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">圖片網址</span>
@@ -58,13 +64,13 @@
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票組數</span>
-            <input name="group" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
+            <input name="group"
+              class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
               placeholder="請填寫套票組數" type="number" required>
           </div>
           <div class="d-flex align-items-center mb-3">
             <span class="text-primary-400 fw-medium me-4">套票星級</span>
-            <input name="rate"
-              class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
+            <input name="rate" class="bg-light border-0 border-bottom border-1 border-primary-400 flex-fill py-2 ps-12 "
               placeholder="請填寫套票星級" type="number" required>
           </div>
           <div class="d-flex  mb-4">
@@ -84,19 +90,25 @@
 
   <section class="py-93 bg-light search">
     <div class="container">
-      <div class="position-relative d-flex align-items-center mb-4">
-        <select class="search-area py-2 ps-12 me-4">
-          <option  class="d-none area" value="all">地區搜尋</option>
-        </select>
-        <ul class="position-absolute drop-down list-unstyled border border-gray-600 py-2 z-3 text-gray-600 bg-white ">
-          <li class="drop-down-item" value="all">全部地區</li>
-          <li class="drop-down-item" value="台北">台北</li>
-          <li class="drop-down-item" value="高雄">高雄</li>
-          <li class="drop-down-item" value="台中">台中</li>
-        </ul>
-        <img class="search-icon position-absolute" src="../assets/images/up-down.png" alt="search-area-icon">
-        <span class="text-gray-500 search-num">本次搜尋共 6 筆資料</span>
+      <div class="d-flex justify-content-between align-items-start">
+        <div class="position-relative d-flex align-items-center mb-4">
+          <select class="search-area py-2 ps-12 me-4">
+            <option class="d-none area" value="all">地區搜尋</option>
+          </select>
+          <ul class="position-absolute drop-down list-unstyled border border-gray-600 py-2 z-3 text-gray-600 bg-white ">
+            <li class="drop-down-item" value="all">全部地區</li>
+            <li class="drop-down-item" value="台北">台北</li>
+            <li class="drop-down-item" value="高雄">高雄</li>
+            <li class="drop-down-item" value="台中">台中</li>
+          </ul>
+          <img class="search-icon position-absolute" src="../assets/images/up-down.png" alt="search-area-icon">
+          <span class="text-gray-500 search-num text-nowrap">本次搜尋共 6 筆資料</span>
+        </div>
+        <div  id="chart" style="height: 192px;"></div>
       </div>
+
+
+      <!--拿到的資料渲染的地方  -->
       <ul class="list-unstyled card-list row gy-4">
       </ul>
     </div>
