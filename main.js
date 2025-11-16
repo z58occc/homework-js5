@@ -43,6 +43,13 @@ import "bootstrap/dist/js/bootstrap.min.js";
 let data;
 let obj = {};
 let arr = [];
+const locationSelect = document.querySelector(".location-select");
+const defaultValue = document.querySelector(".default-value");
+const locationSelectLists = document.querySelector(".location-select-lists");
+const ticketForm = document.querySelector(".ticket-form");
+const groupNum = document.querySelector(".groupNum");
+locationSelectLists.style.display = "none";
+
 function renderAll() {
   axios
     .get(
@@ -70,11 +77,13 @@ function renderAll() {
 
 const cardList = document.querySelector(".card-list");
 const select = document.querySelector(".search-area");
-const dropDown = document.querySelector(".drop-down");
+const regionSearch = document.querySelector(".regionSearch");
 const searchNum = document.querySelector(".search-num");
 const area = document.querySelector(".area");
+const alertMsg = document.querySelector(".alert-msg");
 
-dropDown.style.display = "none";
+regionSearch.style.display = "none";
+alertMsg.style.display = "none";
 
 // 渲染
 function renderData(data) {
@@ -123,40 +132,40 @@ function renderData(data) {
 
 // 篩選清單點擊後出現
 select.addEventListener("click", function (e) {
-  dropDown.style.display = "block";
+  regionSearch.style.display = "block";
 });
 
 let value;
 
 // 篩選資料
-select.addEventListener("change", function (e) {
+function filter(e) {
   let value = e.target.value;
   let newData;
   if (value !== "all") {
     newData = data.filter((el) => el.area === value);
+    area.textContent = value;
   } else if (value === "all") {
     newData = data;
+    area.textContent = "全部地區";
   }
-  renderData(newData);
   searchNum.textContent = `本次搜尋共 ${newData.length} 筆資料`;
+  renderData(newData);
+}
+
+select.addEventListener("change", function (e) {
+  filter(e);
 });
 
-dropDown.addEventListener("click", function (e) {
-  value = e.target.closest(".drop-down-item").getAttribute("value");
+regionSearch.addEventListener("click", function (e) {
+  value = e.target.closest(".regionSearch-item").getAttribute("value");
   area.value = value;
   select.dispatchEvent(new Event("change", { bubbles: true }));
 });
 
 // 下拉清單消失（篩選）
 document.addEventListener("click", function (e) {
-  if (e.target !== select) dropDown.style.display = "none";
+  if (e.target !== select) regionSearch.style.display = "none";
 });
-
-const locationSelect = document.querySelector(".location-select");
-const defaultValue = document.querySelector(".default-value");
-const locationSelectLists = document.querySelector(".location-select-lists");
-const ticketForm = document.querySelector(".ticket-form");
-locationSelectLists.style.display = "none";
 
 //下拉清單點擊後出現 (表單)
 locationSelect.addEventListener("click", function (e) {
@@ -178,12 +187,17 @@ ticketForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const formData = new FormData(ticketForm);
   const formDataObj = Object.fromEntries(formData.entries());
+  if (formDataObj.group < 1) {
+    alertMsg.style.display = "block";
+    return;
+  }
   formDataObj.id = data.length;
   formDataObj.group = Number(formDataObj.group);
   formDataObj.price = Number(formDataObj.price);
   formDataObj.rate = Number(formDataObj.rate);
   data.push(formDataObj);
   ticketForm.reset();
+  defaultValue.textContent = "";
 
   obj[formDataObj.area] += 1;
   objToArr();
@@ -217,15 +231,24 @@ function generateDonut(arr) {
     },
     donut: {
       title: "套票地區比重",
+      width:10,
+    },
+    size: {
+      width: 160,
+      height: 160,
     },
   });
 }
 function objToArr() {
-  arr=[];
+  arr = [];
   const keys = Object.keys(obj);
   const values = Object.values(obj);
   for (let i = 0; i < keys.length; i++) {
     arr.push([keys[i], values[i]]);
   }
 }
+groupNum.addEventListener("keydown", function (e) {
+  if (e.key === "." || e.key === "-") e.preventDefault();
+});
+
 renderAll();
